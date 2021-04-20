@@ -38,16 +38,17 @@
     </div>
 
     <div class="cnt-card mb-4 mx-auto w-3/4">
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Short</th>
-                <th>URL</th>
-            </tr>
-            <tr th:each="link : ${links}">
+        <span class="heading-2 block mb-6">Verfügbare Links</span>
+        <table class="w-full">
+            <tr class="flex justify-between items-center" th:each="link : ${links}">
                 <td th:text="${link.getName()}">ERROR</td>
                 <td th:text="${link.getShorturl()}">ERROR</td>
                 <td th:text="${link.getUrl()}">ERROR</td>
+                <td>
+                    <form method="post" th:action="@{/delete/{shorturl} (shorturl=${link.getShorturl()})}">
+                        <input type="submit" class="btn-red py-1" th:value="Löschen">
+                    </form>
+                </td>
             </tr>
         </table>
     </div>
