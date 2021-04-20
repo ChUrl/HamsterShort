@@ -1,4 +1,4 @@
-package de.churl.hamstershort.model
+package de.churl.hamstershort
 
 import org.hibernate.annotations.GenericGenerator
 import java.util.*

@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" th:href="@{/style/tailwind_dev.css}">
-    <!--    <link rel="stylesheet" th:href="@{/style/tailwind_prod.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{/style/tailwind_dev.css}">-->
+    <link rel="stylesheet" th:href="@{/style/tailwind_prod.css}">
 
     <title>Hamster-Short</title>
 </head>
@@ -40,11 +40,13 @@
     <div class="cnt-card mb-4 mx-auto w-3/4">
         <span class="heading-2 block mb-6">Verfügbare Links</span>
         <table class="w-full">
-            <tr class="flex justify-between items-center" th:each="link : ${links}">
+            <tr class="justify-between items-center" th:each="link : ${links}">
                 <td th:text="${link.getName()}">ERROR</td>
-                <td th:text="${link.getShorturl()}">ERROR</td>
                 <td th:text="${link.getUrl()}">ERROR</td>
                 <td>
+                    <input class="form-field" type="url" readonly th:value="'https://xxhamster.me/video/' + ${link.getShorturl()}">
+                </td>
+                <td class="float-right">
                     <form method="post" th:action="@{/delete/{shorturl} (shorturl=${link.getShorturl()})}">
                         <input type="submit" class="btn-red py-1" th:value="Löschen">
                     </form>
