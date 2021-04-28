@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  dbpostgres:
+    image: library/postgres:13.2-alpine
+    container_name: dbpostgres
+    environment:
+      - POSTGRES_DB=hamstershort
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dbpw
+    volumes:
+      - ./postgres/storage:/var/lib/postgresql/data
+
+  hamstershort:
+    image: hamstershort_hamstershort
+    container_name: hamstershort
+    depends_on:
+      - dbpostgres
+    command: [ "/app/wait-for-it.sh", "dbpostgres:5432", "--", "java", "-jar", "/app/hamstershort.jar" ]
+    ports:
+      - 8081:8080
+
