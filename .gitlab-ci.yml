@@ -21,7 +21,7 @@ workflow:
 
 docker-build:
   image: docker:20 # provides the docker toolset (but without an active daemon)
-  needs: ["gradle-test"]
+#  needs: ["gradle-test"]
   services: # configure images that run during jobs linked to the image (above)
     - docker:dind # dind build on docker and starts up the dockerdaemon (docker itself doesn't do that), which is needed to call docker build etc.
   before_script:
