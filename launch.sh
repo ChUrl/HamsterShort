@@ -1,6 +1,7 @@
 #!/bin/sh
 
-git -C HamsterShort pull
+cd /home/christoph/HamsterShort
+git pull
 
 docker-compose pull
 docker-compose up -d --remove-orphans
