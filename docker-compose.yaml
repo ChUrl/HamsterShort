@@ -1,21 +1,21 @@
-version: "3.8"
+version: "3.3"
 services:
-  dbpostgres:
-    image: library/postgres:13.2-alpine
-    container_name: dbpostgres
+  application:
+    image: "registry.gitlab.com/churl/hamstershort"
+    container_name: "hamstershort_app"
+    depends_on:
+      - database
+    command: [ "/app/wait-for-it.sh", "hamstershort_postgres:5432", "--", "java", "-jar", "/app/hamstershort.jar" ]
+    ports:
+      - "8081:8080"
+
+  database:
+    image: "library/postgres:13.2-alpine"
+    container_name: "hamstershort_postgres"
     environment:
       - POSTGRES_DB=hamstershort
       - POSTGRES_USER=dev
       - POSTGRES_PASSWORD=dbpw
     volumes:
-      - ./postgres/storage:/var/lib/postgresql/data
-
-  hamstershort:
-    build: .
-    container_name: hamstershort
-    depends_on:
-      - dbpostgres
-    command: [ "/app/wait-for-it.sh", "dbpostgres:5432", "--", "java", "-jar", "/app/hamstershort.jar" ]
-    ports:
-      - 8081:8080
+      - ./storage:/var/lib/postgresql/data
 

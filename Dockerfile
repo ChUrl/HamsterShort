@@ -1,9 +1,9 @@
-FROM gradle:jdk15 AS build
-COPY --chown=gradle:gradle . /home/gradle/src
+FROM gradle:7.3.3-jdk17-alpine AS build
 WORKDIR /home/gradle/src
-RUN gradle bootJar --no-daemon
+COPY --chown=gradle:gradle . .
+RUN gradle bootJar --no-daemon -i --stacktrace
 
-FROM openjdk:15-slim
+FROM openjdk:17.0.2-slim-buster AS deploy
 RUN mkdir /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/hamstershort.jar
 COPY --from=build /home/gradle/src/wait-for-it.sh /app/wait-for-it.sh
