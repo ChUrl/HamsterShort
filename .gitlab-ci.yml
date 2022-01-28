@@ -30,12 +30,6 @@ docker-build:
     - docker:dind # dind build on docker and starts up the dockerdaemon (docker itself doesn't do that), which is needed to call docker build etc.
   before_script:
     - docker login -u $CI_REGISTRY_USER -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: push
-    paths:
-      - build
-      - .gradle
   script:
     - docker pull $CI_REGISTRY_IMAGE:latest || true # latest image for cache (not failing if image is not found)
     - >
