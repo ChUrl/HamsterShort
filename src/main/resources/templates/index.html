@@ -44,7 +44,7 @@
                 <td th:text="${link.getName()}">ERROR</td>
                 <td th:text="${link.getUrl()}">ERROR</td>
                 <td>
-                    <input class="form-field" type="url" readonly th:value="'xxhamster.me/video/' + ${link.getShorturl()}">
+                    <input class="form-field" type="url" readonly th:value="'https://www.xxhamster.me/video/' + ${link.getShorturl()}">
                 </td>
                 <td class="float-right">
                     <form method="post" th:action="@{/delete/{shorturl} (shorturl=${link.getShorturl()})}">
