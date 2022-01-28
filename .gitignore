@@ -40,3 +40,5 @@ out/
 /src/main/resources/keystore.p12
 /xxhamster.me_private_key.key
 /xxhamster.me_ssl_certificate.cer
+*.key
+*.cer
