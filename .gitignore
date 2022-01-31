@@ -42,3 +42,7 @@ out/
 /xxhamster.me_ssl_certificate.cer
 *.key
 *.cer
+/nginx/xxhamster.me_private_key.key_old
+/nginx/xxhamster.me_ssl_certificate.cer_old
+/nginx/xxhamster.me_ssl_certificate_CHAINED.cer_old
+/nginx/xxhamster.me_ssl_certificate_INTERMEDIATE.cer_old
